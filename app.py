@@ -262,8 +262,8 @@ if run and ticker_input:
 
     st.markdown("---")
     st.caption(
-        "⚠️ This report is for informational purposes only and does not constitute investment advice. "
-        "Always conduct your own due diligence before making investment decisions."
+        "⚠️ Financial data sourced from Yahoo Finance and may lag latest quarterly filings by 1-2 quarters. "
+"For Indian stocks, cross-check ratios on Screener.in. Not investment advice."
     )
 
     st.markdown("### Download Report")
