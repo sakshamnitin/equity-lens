@@ -59,8 +59,12 @@ footer { visibility: hidden; }
 
 # ── Prompt builder ────────────────────────────────────────────────────────────
 def build_analysis_prompt(ticker: str, info: dict, fin: dict) -> str:
-    return f"""You are a senior equity research analyst at a top-tier investment bank.
-Analyse the following stock and return a JSON object ONLY — no preamble, no markdown.
+    return f"""You are a seasoned equity research analyst with 15 years on the sell-side.
+You write like a human — direct, opinionated, occasionally dry. No corporate fluff,
+no AI-sounding phrases like "it is worth noting" or "it is important to consider"
+or "the company demonstrates". Use short punchy sentences. Say what you actually think.
+Write like you're briefing a smart colleague over coffee, not filing a report.
+Return a JSON object ONLY — no preamble, no markdown.
 
 COMPANY DATA:
 Ticker: {ticker}
@@ -104,7 +108,7 @@ VALUATION FRAMEWORK (apply as appropriate):
 OUTPUT FORMAT — return EXACTLY this JSON schema:
 {{
   "verdict": "BUY" | "HOLD" | "SELL",
-  "verdict_rationale": "2-3 sentence plain explanation of the verdict",
+  "verdict_rationale": "2-3 sentences. Be direct and opinionated — say exactly why. No hedging.",
   "valuation_summary": "3-4 sentences covering DCF perspective, relative valuation, and what the market is pricing in",
   "key_positives": ["point 1", "point 2", "point 3"],
   "risk_flags": [
@@ -112,7 +116,7 @@ OUTPUT FORMAT — return EXACTLY this JSON schema:
     {{"flag": "description", "level": "HIGH" | "MEDIUM" | "LOW"}},
     {{"flag": "description", "level": "HIGH" | "MEDIUM" | "LOW"}}
   ],
-  "plain_english": "1-2 sentence ELI5 takeaway for a retail investor with no finance background"
+  "plain_english": "1-2 sentences like you're texting a friend who asked if they should buy this stock. Casual, honest, no jargon."
 }}"""
 
 
