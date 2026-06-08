@@ -23,14 +23,22 @@ def _s(text: str) -> str:
     """Sanitize text to latin-1 safe characters."""
     if not text:
         return ""
-    return (str(text)
-        .replace("\u2014", "-").replace("\u2013", "-")
-        .replace("\u2019", "'").replace("\u2018", "'")
-        .replace("\u201c", '"').replace("\u201d", '"')
-        .replace("\u2022", "*").replace("\u2026", "...")
-        .replace("\u00a0", " ").replace("\u2011", "-")
-        .replace("\u2012", "-").replace("\u00b7", ".")
-    )
+    text = str(text)
+    result = ""
+    for char in text:
+        try:
+            char.encode('latin-1')
+            result += char
+        except (UnicodeEncodeError, UnicodeDecodeError):
+            replacements = {
+                '\u2014': '-', '\u2013': '-', '\u2019': "'", '\u2018': "'",
+                '\u201c': '"', '\u201d': '"', '\u2022': '*', '\u2026': '...',
+                '\u00a0': ' ', '\u2011': '-', '\u2012': '-', '\u00b7': '.',
+                '\u00e9': 'e', '\u00e8': 'e', '\u00e0': 'a', '\u00fc': 'u',
+                '\u00f6': 'o', '\u00e4': 'a', '\u00df': 'ss',
+            }
+            result += replacements.get(char, '')
+    return result
 
 
 class EquityReport(FPDF):
