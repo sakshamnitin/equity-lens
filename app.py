@@ -182,7 +182,7 @@ if run and ticker_input:
             prompt = build_analysis_prompt(ticker, info, financials)
 
             message = client.messages.create(
-                model="claude-sonnet-4-20250514",
+                model="claude-sonnet-4-5",
                 max_tokens=1800,
                 messages=[{"role": "user", "content": prompt}]
             )
