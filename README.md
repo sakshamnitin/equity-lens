@@ -82,4 +82,4 @@ api_key = st.secrets.get("ANTHROPIC_API_KEY") or st.sidebar.text_input("Anthropi
 
 ---
 
-*Built by Saksham Dhingra · Not investment advice*
+*Built by Saksham Minde · Not investment advice*
