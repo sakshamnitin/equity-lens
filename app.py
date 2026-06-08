@@ -187,7 +187,9 @@ if run and ticker_input:
                 messages=[{"role": "user", "content": prompt}]
             )
             raw = message.content[0].text
+            raw = raw.strip().replace("```json", "").replace("```", "").strip()
             analysis = json.loads(raw)
+            
 
         except json.JSONDecodeError:
             st.error("AI response parse error. Please retry.")
